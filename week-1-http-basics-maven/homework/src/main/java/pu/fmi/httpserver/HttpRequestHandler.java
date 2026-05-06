@@ -83,6 +83,14 @@ public class HttpRequestHandler {
 
   private HttpResponse<String> delete(String path) {
 
+    Notification notification = find(path);
+
+    if (notification == null || notification.isDeleted()) return new HttpResponse<>(HttpStatus.NOT_FOUND, "Notification not found");
+
+    notification.setDeleted(true);
+    return new HttpResponse<>(HttpStatus.NO_CONTENT, "Not found");
+
+
     // TODO: DELETE /notifications/{id} – довършване на имплементацията
     // * От подадения path (например "/notifications/1") извлечи id-то
     // * Потърси известие със съответното id в списъка с известия
@@ -101,12 +109,7 @@ public class HttpRequestHandler {
     // * Всички предоставени Unit тестове трябва да минават успешно
     // * Не променяйте тестовете
 
-    Notification notification = find(path);
 
-    if (notification == null || notification.isDeleted()) return new HttpResponse<>(HttpStatus.NOT_FOUND, "Notification not found");
-
-    notification.setDeleted(true);
-      return new HttpResponse<>(HttpStatus.NO_CONTENT, "Not found");
 
   }
 
