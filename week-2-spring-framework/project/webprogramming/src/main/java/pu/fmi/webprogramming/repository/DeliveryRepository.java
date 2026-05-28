@@ -32,8 +32,11 @@ public class DeliveryRepository {
         return delivery;
       }
     }
-
     //        throw new DeliveryCustomException("Delivery with such id does not exist");
     return null;
+  }
+
+  public List<Delivery> findAllDeliveries() {
+    return deliveries;
   }
 }

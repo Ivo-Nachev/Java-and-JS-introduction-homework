@@ -13,6 +13,7 @@ import pu.fmi.webprogramming.repository.DeliveryRepository;
 import pu.fmi.webprogramming.repository.WarehouseRepository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static pu.fmi.webprogramming.model.enums.DeliveryStatusEnum.*;
 
@@ -106,6 +107,11 @@ public class DeliveryService implements DeliveryServiceInterface {
     return false;
   }
 
+  @Override
+  public List<Delivery> getAllDeliveries() {
+    return List.of();
+  }
+
   private boolean isStatusValid(DeliveryStatusEnum currentStatus, DeliveryStatusEnum newStatus) {
 
     if (CREATED.equals(currentStatus) && ASSIGNED.equals(newStatus)) {
@@ -121,6 +127,7 @@ public class DeliveryService implements DeliveryServiceInterface {
         || ASSIGNED.equals(currentStatus) && CANCELED.equals(newStatus)) {
       return true;
     }
+
 
     return false;
   }
